@@ -15,7 +15,7 @@
  .navbar {
      position: relative;
      padding: 0.5rem;
-     background-color: rgb(101,18,95,0.5);
+     background-color: rgba(101,18,95,0.5);
      z-index: 1;
  }
  .navbar .logo {
@@ -52,9 +52,15 @@
      text-decoration: none;
      cursor: pointer;
  }
+
   .links-container .navbar-link:hover {
      color: rgb(233,50,117);
  }
+
+  .links-container .navbar-link:active {
+     background-color: white;
+ }
+
  .container {
      margin: 0 auto;
      max-width: 64rem;
