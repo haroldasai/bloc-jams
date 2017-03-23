@@ -30,6 +30,21 @@
      ]
  };
 
+ var albumSystemOfADown = {
+     title: 'Toxicity',
+     artist: 'System of a Down',
+     label: 'AR',
+     year: '2001',
+     albumArtUrl: 'assets/images/album_covers/SystemofaDownToxicityalbumcover.jpg',
+     songs: [
+         { title: 'Chop Suey!', duration: '3:30' },
+         { title: 'Science', duration: '2:43' },
+         { title: 'Aerials', duration: '6:11'},
+         { title: 'Deer Dance', duration: '2:55' },
+         { title: 'Toxicity', duration: '3:39'}
+     ]
+ };
+
  var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -68,3 +83,12 @@
  window.onload = function() {
      setCurrentAlbum(albumPicasso);
  };
+
+var albumArray = [albumPicasso, albumMarconi, albumSystemOfADown];
+var index = 1;
+
+var albumCover = document.getElementsByClassName('album-cover-art')[0];
+albumCover.addEventListener('click', function(){
+    setCurrentAlbum(albumArray[index%3]);
+    index++;
+});
