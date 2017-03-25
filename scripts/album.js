@@ -69,6 +69,7 @@
  var songRows = document.getElementsByClassName('album-view-song-item');
 
  var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
+ var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
 
  window.onload = function() {
      setCurrentAlbum(albumPicasso);
@@ -78,6 +79,11 @@
          if (event.target.parentElement.className === 'album-view-song-item') {
              // Change the content from the number to the play button's HTML
              event.target.parentElement.querySelector('.song-item-number').innerHTML = playButtonTemplate;
+             // harold// add eventlistener on play button
+             var playButton = event.target.parentElement.querySelector('.song-item-number');
+             playButton.addEventListener('click', function(){
+                this.innerHTML = pauseButtonTemplate; 
+             });
          }
      });
      
