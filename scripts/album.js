@@ -70,6 +70,7 @@
 
  var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
  var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
+ var playing = 0;
 
  window.onload = function() {
      setCurrentAlbum(albumPicasso);
@@ -78,19 +79,28 @@
          // Only target individual song rows during event delegation
          if (event.target.parentElement.className === 'album-view-song-item') {
              // Change the content from the number to the play button's HTML
-             event.target.parentElement.querySelector('.song-item-number').innerHTML = playButtonTemplate;
-             // harold// add eventlistener on play button
-             var playButton = event.target.parentElement.querySelector('.song-item-number');
-             playButton.addEventListener('click', function(){
-                this.innerHTML = pauseButtonTemplate; 
-             });
+             if(event.target.parentElement.querySelector('.song-item-number').innerHTML !== pauseButtonTemplate){
+                 event.target.parentElement.querySelector('.song-item-number').innerHTML = playButtonTemplate;
+                 // harold// add eventlistener on play button
+                 var playButton = event.target.parentElement.querySelector('.song-item-number');
+                 playButton.addEventListener('click', function(event){
+                     if(playing != 0){
+                         songRows[playing-1].children[0].innerHTML = songRows[playing-1].children[0].getAttribute('data-song-number');
+                     }
+                     this.innerHTML = pauseButtonTemplate; 
+                     playing = parseInt(this.getAttribute('data-song-number'));
+                 });
+             }
+             
          }
      });
      
      for (var i = 0; i < songRows.length; i++) {
          songRows[i].addEventListener('mouseleave', function(event) {
              // Selects first child element, which is the song-item-number element
-             this.children[0].innerHTML = this.children[0].getAttribute('data-song-number');
+             if(this.children[0].innerHTML !== pauseButtonTemplate){
+                 this.children[0].innerHTML = this.children[0].getAttribute('data-song-number');
+             }
          });
      }     
  };
