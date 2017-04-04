@@ -185,7 +185,7 @@
  };
 
  var setSong = function(songNumber) {
-     if(number!==null) {
+     if(songNumber!==null) {
         currentlyPlayingSongNumber = songNumber;
         currentSongFromAlbum = currentAlbum.songs[songNumber-1];
      } else {
