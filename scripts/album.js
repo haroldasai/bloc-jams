@@ -176,6 +176,14 @@
      $lastSongNumberCell.html(lastSongNumber);
  };
 
+ var nextPreviousSong = function(next) {
+     if(next === true) {
+         return nextSong;         
+     } else {
+         return previousSong;
+     }     
+ }
+
  var updatePlayerBarSong = function(){
      
      $('.currently-playing .song-name').text(currentSongFromAlbum.title);
@@ -212,6 +220,6 @@
 
  $(document).ready(function() {
      setCurrentAlbum(albumPicasso);
-     $previousButton.click(previousSong);
-     $nextButton.click(nextSong);     
+     $previousButton.click(nextPreviousSong(false));
+     $nextButton.click(nextPreviousSong(true));     
  });
